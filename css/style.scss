@@ -43,6 +43,19 @@ a:hover, a:active, a:focus {
 # Navigation
 --------------------------------------------------------------*/
 
+@function setcolor($color) {
+    @if (lightness($color) > 65) {
+      @return #181818;
+    }
+    @else {
+      @return #f0f0f0;
+	}
+}
+$navColor: #4b608c;
+$navText: setcolor($navColor);
+
+
+
 header {
 	&.fixed {
 		width: 100%;
@@ -58,7 +71,7 @@ header {
 		position: relative;
 		height: 60px;
 		width: 100%;
-	    background: rgba(0,0,0,0.96);
+	    background: $navColor;
 	    padding: 0 20px 0 16px;
 		ul {
 			list-style: none;
@@ -82,7 +95,7 @@ header {
 					    transition: 200ms all linear;
 					    &.opened {
 					    	background-color: transparent;
-						    color: #1f1f1f;
+						    color: darken($navColor, 10%);
 						    font-size: 16px;
 						    margin-right: -36px;
 						    padding: 0 10px;
@@ -90,10 +103,15 @@ header {
 						    right: 40px;
 					    }
 					    &.closed {
-							background-color: #1f1f1f;
-						    border: 1px solid #444;
-						    color: #f0f0f0;
+							background-color: $navColor;
+						    border: 1px solid lighten($navColor, 6%);
+						    color: $navText;
 						    padding: 9px 10px;
+						    &:hover {
+						    	border-color: lighten($navColor, 15%);
+						   		background-color: darken($navColor, 10%);
+						   		color: $navText;
+						    }
 					    }
 			    	}
 			    	#search-field {
@@ -108,7 +126,7 @@ header {
 					    line-height: 20px;
 					    text-indent: 0;
 					    border-radius: 4px;
-					    background-color: #f0f0f0;
+					    background-color: $navText;
 					    display: initial;
 					    &.opened {
 					    	width: 200px;
@@ -121,23 +139,23 @@ header {
 			    }
 			    a {
 			    	display: block;
-			    	border: 1px solid #444;
+			    	border: 1px solid lighten($navColor, 6%);
 				    border-radius: 4px;
 				    font-size: 14px;
 				    line-height: 20px;
 			    	height: 36px;
 			    	margin: 11px 0;
 		    	    padding: 6px 14px;
-				    background-color: #1f1f1f;
-				    border-color: #444;
-				    color: #f0f0f0;
+				    background-color: $navColor;
+				    border-color: lighten($navColor, 6%);
+				    color: $navText;
 				    transition: 200ms all linear;
 				    font-family: "Helvetica Neue Bold", 'Helvetica';
 				    cursor: pointer;
 				    &:hover {
-				    	border-color: #fafafa;
-				   		background-color: #000;
-				   		color: #f0f0f0;
+				    	border-color: lighten($navColor, 15%);
+				   		background-color: darken($navColor, 10%);
+				   		color: $navText;
 				    }
 				    i {
 				    	top: 2px;
@@ -176,7 +194,7 @@ header {
     top: 60px;
 	left: -350px;
 	padding-left: 50px;
-	background-color: #2a2a2a;
+	background-color: lighten($navColor, 6%);
 	z-index: 909;
 	transition-timing-function: cubic-bezier(0.565,1.65,0.765,0.88);
 	transition: transform 500ms cubic-bezier(0.565,1.65,0.765,0.88);
@@ -185,13 +203,13 @@ header {
 	}
 	.section-menu {
 		position: relative;
-		color: #f0f0f0;
+		color: $navText;
 		list-style: none;
 	    float: left;
 	    margin: 0;
 	    padding: 10px 0 0 35px;
 	    width: 325px;
-	    background-color: #2a2a2a;
+	    background-color: lighten($navColor, 6%);
 	    z-index: 597;
 	    font-size: 14px;
 		li {
@@ -199,15 +217,15 @@ header {
 			float: none;
     		text-align: left;
     		&.hover {
-    			background: rgba(0,0,0,0.96);
-    			color: #fff;
+    			background: $navColor;
+    			color: $navText;
     		}
     		&.unhover {
     			background: rgba(0,0,0,0)!important;
-    			color: #fff!important;
+    			color: $navText!important;
     		}
 			.main-nav-angle {
-				color: #6c6c6c;
+				color: lighten($navColor, 20%);
 			    float: right;
 			    padding-right: 30px;
 			    padding-top: 12px;
@@ -219,7 +237,7 @@ header {
 			    line-height: 28px;
 			    font-weight: normal;
 			    text-transform: none;
-			    color: #f7f7f7;
+			    color: $navText;
 			    text-decoration: none;
 			    width: auto;
 			    border-radius: 4px;    
@@ -228,11 +246,11 @@ header {
     			display: inline-block;
     			&:hover {
     				padding: 6px 12px;
-    				background: rgba(0,0,0,0.96);
+    				background: $navColor;
     			}
 			}
 			.drop-menu {
-				background-color: #212121;
+				background-color: lighten($navColor, 4%);
 				margin-left: -20px;
 				list-style: none;
 				padding: 0px;
@@ -253,7 +271,7 @@ header {
 	padding: 20px 0 0 20px;
     position: relative;
     width: 275px;
-    background-color: #2a2a2a;
+    background-color: lighten($navColor, 6%);
     input {
     	width: 268px;
     	border: 0;
@@ -281,16 +299,16 @@ header {
 	    padding: 0;
 	    cursor: pointer;
 	    font-size: 18px;
-	    color: #2a2a2a;
+	    color: lighten($navColor, 6%);
 	    margin: 0 5px 0 0;
     }
 }
 
 #site-attribution-off-canvas-menu {
-    background-color: #2a2a2a;
+    background-color: lighten($navColor, 6%);
+    color: $navText;
     width: 325px;
-    padding-left: 35px;
-    padding-top: 20px;
+    padding: 30px 60px;
     margin: 0;
     float: left;
     height: 46%;
