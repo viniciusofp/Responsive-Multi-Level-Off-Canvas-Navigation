@@ -29,8 +29,7 @@ $( ".section-menu li a").hover(
  );
 
 $( ".section-menu > li").click(function() {
-	console.log('oi');
 	$(this).children(".drop-menu").toggleClass('opened');
+	$(this).children("i").toggleClass('fa-plus fa-minus');
 });
-
 
